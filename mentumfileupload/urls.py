@@ -18,4 +18,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('_/', include('infra.urls', namespace="infra")),
+    path('', include('file.urls', namespace="file")),
 ]
