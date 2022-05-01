@@ -3,5 +3,5 @@ from rest_framework.response import Response
 
 @api_view(['GET'])
 def health(request):
-    response = {'status': 'ok'}
+    response = {'data': {'status': 'ok'}}
     return Response(response)
