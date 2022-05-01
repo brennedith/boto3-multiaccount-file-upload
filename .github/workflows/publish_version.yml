@@ -5,7 +5,7 @@ on:
       - "main"
 
 jobs:
-  build_and_publish:
+  build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -32,3 +32,11 @@ jobs:
 
           docker tag $ECR_REGISTRY/$ECR_REPOSITORY:${GITHUB_SHA::8} $ECR_REGISTRY/$ECR_REPOSITORY:latest
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+
+      - name: Restart Amazon ECS task
+        env:
+          CLUSTER: mentum
+          SERVICE: file-service-service
+          REGION: us-west-2
+        run: |
+          aws ecs update-service --force-new-deployment --cluster $CLUSTER --service $SERVICE --region $REGION &
