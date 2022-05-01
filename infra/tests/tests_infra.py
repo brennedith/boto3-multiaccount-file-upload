@@ -3,8 +3,7 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 
 class TestsInfra(APITestCase):
-    def test_health(self):
-        
+    def test_success_health_endpoint(self):
         url = reverse('infra:health')
 
         response = self.client.get(url)

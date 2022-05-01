@@ -1,4 +1,3 @@
-import time
 import logging
 
 from rest_framework.decorators import APIView
@@ -7,8 +6,7 @@ from rest_framework.exceptions import ParseError
 from rest_framework.parsers import FileUploadParser
 from rest_framework import status
 
-
-from .s3 import uploadToMultipleAccounts
+from .logic.s3 import uploadToMultipleAccounts
 
 class FileUpload(APIView):
     parser_class = (FileUploadParser)
