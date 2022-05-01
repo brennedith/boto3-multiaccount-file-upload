@@ -6,7 +6,7 @@ from rest_framework.exceptions import ParseError
 from rest_framework.parsers import FileUploadParser
 from rest_framework import status
 
-from .logic.handlemultipleaccounts import handleMultipleAccounts
+from .logic.handleinmultipleaccounts import handleInMultipleAccounts
 from .logic.utils import prependTimeAndSlug
 from .logic.uploadtos3 import uploadToS3
 from .constants import ERROR_MESSAGES
@@ -26,7 +26,7 @@ class FileUpload(APIView):
             name = request.data.get('filename')
             filename = prependTimeAndSlug(name)
 
-            requestIds = handleMultipleAccounts(uploadToS3, file, filename)
+            requestIds = handleInMultipleAccounts(uploadToS3, file, filename)
 
             return Response(
                 data={'data': requestIds},

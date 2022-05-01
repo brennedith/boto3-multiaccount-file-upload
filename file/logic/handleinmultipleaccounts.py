@@ -10,7 +10,7 @@ accounts = [
     json.loads(env('AWS_ACCOUNT_B'))
 ]
 
-def handleMultipleAccounts(fn, *args):
+def handleInMultipleAccounts(fn, *args):
     maxWorkers = 4
     workers = min(len(accounts), maxWorkers)
     requestIds = []
