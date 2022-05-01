@@ -15,6 +15,7 @@ class TestsInfra(TestCase):
         self.assertTrue(len(word8Char) == 8)
         self.assertTrue(re.fullmatch(regext, word8Char))
 
+
     # prependTimeAndSlug
     def test_success_prepend_time_and_slug(self):
         testName = 'lorem-ipsum.ext'
