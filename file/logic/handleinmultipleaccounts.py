@@ -1,4 +1,3 @@
-import json
 import concurrent.futures
 
 import environ
@@ -6,8 +5,8 @@ import environ
 env = environ.Env()
 
 accounts = [
-    json.loads(env('AWS_ACCOUNT_A')),
-    json.loads(env('AWS_ACCOUNT_B'))
+    env.json('AWS_ACCOUNT_A'),
+    env.json('AWS_ACCOUNT_B'),
 ]
 
 def handleInMultipleAccounts(fn, *args):
