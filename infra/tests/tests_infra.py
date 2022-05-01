@@ -8,3 +8,4 @@ class TestsInfra(APITestCase):
 
         response = self.client.get(url)
         self.assertTrue(status.is_success(response.status_code))
+        self.assertEqual(response.data.get('data').get('status'), 'ok')
