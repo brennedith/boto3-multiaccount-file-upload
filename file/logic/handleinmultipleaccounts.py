@@ -4,6 +4,7 @@ import environ
 
 env = environ.Env()
 
+# AWS Accounts
 accounts = [
     env.json('AWS_ACCOUNT_A'),
     env.json('AWS_ACCOUNT_B'),
