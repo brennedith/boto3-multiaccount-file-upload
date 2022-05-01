@@ -14,7 +14,7 @@ Mentum's file upload service is responsible for uploading files to s3 buckets di
 2. Install the required dependencies: `pip install -r requirements.txt`
 3. Start the Django application: `python manage.py runserver`
 
-### Environment variables
+### Environment variables (env vars)
 
 #### AWS accounts
 
@@ -35,13 +35,40 @@ Code references:
 >
 > file/logic/handleinmultipleaccounts.py
 
+## Running locally
+
+```sh
+# Copy the example environment file and add the required AWS accounts objects
+cp mentumfileupload/.env.example mentumfileupload/.env
+
+# Run the test server
+python manage.py runserver
+```
+
+## Building and running build locally
+
+> Docker is required for the following commands
+>
+> https://www.docker.com/get-started/
+
+```sh
+# Copy the example environment file and add the required AWS accounts credentials
+cp mentumfileupload/.env.example mentumfileupload/.env
+
+# Build container image
+docker build -t file-upload .
+
+# Running container with custom env vars
+docker run --env-file mentumfileupload/.env -p 8000:8000 file-upload
+```
+
 ## Tests
 
 You can run the service tests (unit and integration) running the following commands:
 
 ```sh
 # Make sure you have an environment file available
-cp mentumfileupload/.env.example mentumfileupload/.env
+cp mentumfileupload/.env.testing mentumfileupload/.env
 
 # Run the test suite
 python manage.py test
