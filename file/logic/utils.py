@@ -8,7 +8,7 @@ def randomWord(length = 6):
 
 def prependTimeAndSlug(name=None):
    if name is None:
-      raise Exception('A base name is required to prepend timestamp and slug')
+      raise Exception('No name provided')
 
    randomSlug = randomWord()
    timestamp = int(time.time())
