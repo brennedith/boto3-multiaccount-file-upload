@@ -21,22 +21,14 @@ class FileUpload(APIView):
         if not request.data.get('filename'):
             raise ParseError(ERROR_MESSAGES.get('NameMissing'))
 
-        try:
-            file = request.data.get('file')
-            name = request.data.get('filename')
-            filename = prependTimeAndSlug(name)
 
-            requestIds = handleInMultipleAccounts(uploadToS3, file, filename)
+        file = request.data.get('file')
+        name = request.data.get('filename')
+        filename = prependTimeAndSlug(name)
 
-            return Response(
-                data={'data': requestIds},
-                status=status.HTTP_201_CREATED,
-            )
+        requestIds = handleInMultipleAccounts(uploadToS3, file, filename)
 
-        except Exception as e:
-            logging.error(e)
-
-            return Response(
-                data={'message': ERROR_MESSAGES.get('UnknownError')},
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            )
+        return Response(
+            data={'data': requestIds},
+            status=status.HTTP_201_CREATED,
+        )
